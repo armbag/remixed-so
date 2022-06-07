@@ -52,7 +52,7 @@ export default function Index() {
 	const { repos, languages } = useLoaderData()
 	const [selectedLang, setSelectedLang] = useState('')
 	const [selectedRepoName, setSelectedRepoName] = useState('')
-	let navigate = useNavigate()
+	const navigate = useNavigate()
 
 	const handleLanguageClick = (
 		event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -75,7 +75,7 @@ export default function Index() {
 		// setCommitInfoResource(newBranchUrl ? fetchData(newBranchUrl) : undefined)
 		// setReadMeResource(fetchData(githubApi.getReadMe(rep.full_name), 'text'))
 		setSelectedRepoName(rep.full_name)
-		navigate(`/${rep.id}`)
+		navigate(`/${rep.full_name}`.replace('/silverorange/', '/silverorange-'))
 	}
 
 	return (
@@ -84,20 +84,20 @@ export default function Index() {
 			className="repos-container"
 		>
 			<h1>SO Remixed</h1>
-			<div className="buttons-list"></div>
-
-			{languages.map((lang: string, index: number) => (
-				<button
-					value={lang}
-					key={lang + index}
-					onClick={handleLanguageClick}
-					className={`${lang === '' ? 'all-button' : ''} ${
-						selectedLang === lang ? 'active' : ''
-					}`}
-				>
-					{lang === '' ? 'All' : lang}
-				</button>
-			))}
+			<div className="buttons-list">
+				{languages.map((lang: string, index: number) => (
+					<button
+						value={lang}
+						key={lang + index}
+						onClick={handleLanguageClick}
+						className={`${lang === '' ? 'all-button' : ''} ${
+							selectedLang === lang ? 'active' : ''
+						}`}
+					>
+						{lang === '' ? 'All' : lang}
+					</button>
+				))}
+			</div>
 			<table className="repos-table">
 				<thead>
 					<tr>

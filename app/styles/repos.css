@@ -1,3 +1,27 @@
+body {
+	--silverorangeLighter: #f89853;
+	--silverorange: #f5822c;
+	--red: #f5582c;
+	--lightGrey: #ebe9e9c4;
+}
+
+button {
+	background-color: var(--silverorangeLighter);
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
+button.active {
+	background-color: var(--silverorange);
+}
+
 .buttons-list {
 	display: flex;
 	justify-content: center;
@@ -35,7 +59,7 @@ tbody tr:nth-child(2n + 1) {
 	background-color: var(--lightGrey);
 }
 
-tbody tr.selected {
+tbody tr.active {
 	background-color: var(--silverorangeLighter);
 }
 
