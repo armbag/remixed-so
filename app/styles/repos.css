@@ -1,0 +1,48 @@
+.buttons-list {
+	display: flex;
+	justify-content: center;
+}
+
+.repos-table {
+	width: 100%;
+	margin-top: 20px;
+	border-spacing: 0;
+}
+
+.all-button {
+	border: 2px solid var(--red);
+}
+
+table {
+	border: 1px solid lightgray;
+}
+
+tbody {
+	border-bottom: 1px solid lightgray;
+}
+
+th {
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	padding: 2px 4px;
+}
+
+td {
+	padding-bottom: 10px;
+}
+
+tbody tr:nth-child(2n + 1) {
+	background-color: var(--lightGrey);
+}
+
+tbody tr.selected {
+	background-color: var(--silverorangeLighter);
+}
+
+td:not(:last-child) {
+	border-right: 1px solid lightgray;
+}
+
+th:last-child {
+	border-right: none;
+}
