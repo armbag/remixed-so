@@ -1,12 +1,13 @@
 import type { ActionFunction, LinksFunction } from '@remix-run/node'
 // import { db } from '~/utils/db.server'
-import { Link, useActionData } from '@remix-run/react'
+import { Link, useActionData, useNavigate } from '@remix-run/react'
 import { json } from '@remix-run/node'
 import ReactMarkdown from 'react-markdown'
 
 // import { Repo } from '~/models/Repo'
 // import type { Repo } from '@prisma/client'
 import repoPage from '../styles/repoPage.css'
+import { useEffect } from 'react'
 
 export const links: LinksFunction = () => {
 	return [
@@ -33,7 +34,6 @@ export function formatDate(date: string): string {
 export const action: ActionFunction = async ({ request }) => {
 	const form = await request.formData()
 	const commitUrl = form.get('commit_url') as string
-	console.log({ commitUrl })
 	const commitRes =
 		commitUrl && (await fetch(commitUrl).then((res) => res && res.json()))
 
@@ -58,6 +58,14 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function RepoRoute() {
 	const data = useActionData()
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (!data) {
+			navigate('/')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [data])
 
 	if (!data) {
 		return null
